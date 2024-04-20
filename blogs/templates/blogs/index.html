@@ -1,13 +1,13 @@
-{% block page_title %}
+{% extends "base.html" %} {% block page_title %}
 <h2>Blog Posts</h2>
 {% endblock page_title %} {% block page_content %} {% block posts %} {% for post
 in posts %}
-<h3><a href="/detail">{{ post.title }}</a></h3>
+<h3><a href="{% url 'blog_detail' post.pk %}">{{ post.title }}</a></h3>
 <small>
   {{ post.created_on.date }} | Categories: {% for category in
   post.categories.all %}
-  <a href="/category">{{ category.name }}</a>
+  <a href="{% url 'blog_category' category.name %}"> {{ category.name }} </a>
   {% endfor %}
 </small>
 <p>{{ post.body | slice:":400" }}...</p>
-{% endfor %} {% endblock posts %} {% endblock page_content %}c
+{% endfor %} {% endblock posts %} {% endblock page_content %}
